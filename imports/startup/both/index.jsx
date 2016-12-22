@@ -9,13 +9,13 @@ import ReactCookie from 'react-cookie';
 import ReactMixin from 'react-mixin';
 
 /// Collections
-Items = new Mongo.Collection('items');
+import {Items} from '../../collection/both/collections.jsx'
 
 /// Components
 let App = React.createClass({
 
     getInitialState() {
-        ItemsSub = Meteor.subscribe("items", () => {
+        Meteor.subscribe("items", () => {
             this.setState({isReady: true});
         });
 
@@ -107,12 +107,12 @@ let Home = React.createClass({
     },
 
     _addOne() {
-        Items.insert({title: `test ${Math.round(Math.random() * 100)}`});
+        Meteor.call('addOne');
         console.log('new')
     },
 
     _remove(ev) {
-        Items.remove(ev.target.id);
+        Meteor.call('remove', ev.target.id);
         console.log('remove ' + ev.target.id);
     },
 

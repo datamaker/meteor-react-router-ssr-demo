@@ -1,5 +1,8 @@
+import {Items} from '../../collection/both/collections.jsx';
+import './methods.jsx';
+
 Meteor.publish('items', function() {
-    var cursor = Items.find({}, {});
+    let cursor = Items.find({}, {});
     // simulate latency to show optimistic UI
     Meteor._sleepForMs(2000);
     return cursor;
