@@ -6,7 +6,7 @@ import {ReactMeteorData} from 'react-meteor-data';
 import {configureStore} from './store';
 import ReactHelmet from 'react-helmet';
 import ReactCookie from 'react-cookie';
-//import ReactMixin from 'react-mixin';
+import ReactMixin from 'react-mixin';
 
 /// Collections
 Items = new Mongo.Collection('items');
