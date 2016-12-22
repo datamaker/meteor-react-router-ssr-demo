@@ -50,7 +50,8 @@ ReactRouterSSR.Run(routes, clientOptions, serverOptions);
 ```
 ## Example directory layout
 https://guide.meteor.com/structure.html#example-app-structure
-`
+
+```javascript
 imports/
   startup/
     client/
@@ -82,4 +83,4 @@ client/
 
 server/
   main.js                      # server entry point, imports all server code
-`
+```
