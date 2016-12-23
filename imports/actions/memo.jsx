@@ -14,7 +14,7 @@ import {
     MEMO_STAR,
     MEMO_STAR_SUCCESS,
     MEMO_STAR_FAILURE
-} from './ActionTypes';
+} from './ActionTypes.jsx';
 import axios from 'axios';
 
 /* MEMO POST */
@@ -135,7 +135,7 @@ export function memoEditSuccess(index, memo) {
 
 export function memoEditFailure(error) {
     return {
-        type: MEMO_EDIT_FAILIURE,
+        type: MEMO_EDIT_FAILURE,
         error
     };
 }

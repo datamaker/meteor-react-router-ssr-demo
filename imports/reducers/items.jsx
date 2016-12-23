@@ -15,11 +15,15 @@ export default function items(state, action) {
             return Object.assign( {}, state, {
                 items : action.items,
             });
-        case types.ITEMS_ADDONE:
+        case types.ITEMS_POST:
             return Object.assign( {}, state, {
                 items : action.items,
             });
-        case types.ITEMS_REMOVE:
+        case types.MEMO_LIST_SUCCESS:
+            return Object.assign( {}, state, {
+                items : action.items,
+            });
+        case types.MEMO_LIST_SUCCESS:
             return Object.assign( {}, state, {
                 items : action.items,
             });

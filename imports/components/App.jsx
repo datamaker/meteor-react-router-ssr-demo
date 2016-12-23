@@ -52,10 +52,10 @@ export default App = React.createClass({
                         {rel: "icon", type: "image/png", sizes: "16x16", href: "https://dummyimage.com/16x16/000/fff"},
                     ]}
                     script={[
-                        {"src": "https://maps.googleapis.com/maps/api/js?key=xxxxxxxxxxxxxxxxx&libraries=places&region=KR", "type": "text/javascript"},
+                        //{"src": "https://maps.googleapis.com/maps/api/js?key=xxxxxxxxxxxxxxxxx&libraries=places&region=KR", "type": "text/javascript"},
                     ]}
                     noscript={[
-                        {"innerHTML": `<img height="1" width="1" style="display:none" src="https://www.facebook.com/tr?id=1111111&ev=PageView&noscript=1"/>`}
+                        //{"innerHTML": `<img height="1" width="1" style="display:none" src="https://www.facebook.com/tr?id=1111111&ev=PageView&noscript=1"/>`}
                     ]}
                     //onChangeClientState={(newState) => console.log(newState)}
                 />

@@ -1,7 +1,9 @@
 /* ITEMS */
 
 export const ITEMS = 'ITEMS';
-export const ITEMS_ADDONE = 'ITEMS_ADDONE';
+export const ITEMS_POST = "ITEMS_POST";
+export const ITEMS_POST_SUCCESS = "ITEMS_POST_SUCCESS";
+export const ITEMS_POST_FAILURE = "ITEMS_POST_FAILURE";
 export const ITEMS_REMOVE = 'ITEMS_REMOVE';
 
 /* RESIZE */
