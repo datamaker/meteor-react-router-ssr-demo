@@ -4,11 +4,10 @@ export const ITEMS = 'ITEMS';
 export const ITEMS_POST = "ITEMS_POST";
 export const ITEMS_POST_SUCCESS = "ITEMS_POST_SUCCESS";
 export const ITEMS_POST_FAILURE = "ITEMS_POST_FAILURE";
-export const ITEMS_REMOVE = 'ITEMS_REMOVE';
 
-/* RESIZE */
-
-export const RESIZE = 'RESIZE';
+export const ITEMS_REMOVE = "ITEMS_REMOVE";
+export const ITEMS_REMOVE_SUCCESS = "ITEMS_REMOVE_SUCCESS";
+export const ITEMS_REMOVE_FAILURE = "ITEMS_REMOVE_FAILURE";
 
 /* AUTH */
 

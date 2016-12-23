@@ -1,7 +1,14 @@
 import React from 'react';
 import {Link} from 'react-router';
 import {InjectData} from 'meteor/meteorhacks:inject-data';
-import {items} from '../actions/items.jsx';
+import {
+    items,
+    memoPostRequest,
+    memoListRequest,
+    memoEditRequest,
+    memoRemoveRequest,
+    memoStarRequest
+} from '../actions/items.jsx';
 import {connect} from 'react-redux';
 
 let Another = React.createClass({
@@ -13,56 +20,33 @@ let Another = React.createClass({
         };
     },
 
-    componentWillMount() {
-
-        //console.log('componentWillMount2', new Date().getMilliseconds());
-
-/*        Meteor.call("items", (error, result) => {
-            //this.setState({isReady: true, items: result});
-            console.log('componentWillMount', new Date().getMilliseconds());
-            this.props.dispatch( items( result ) );
-        });
-
-        InjectData.getData("dehydrated-initial-data", (data) => {
-            console.log('this.props.items.items1', this.props.items.items, new Date().getMilliseconds());
-            console.log('dehydrated-initial-data', data);
-        });*/
-
-        /*if (Meteor.isClient) {
-            InjectData.getData("dehydrated-initial-data", (data) => {
-                let result = JSON.parse(data);
-                console.log('result', result);
-                this.setState({isReady: true, items: result});
-            });
-        } else {
-            Meteor.call("items", (error, result) => {
-                this.setState({isReady: true, items: result});
-                this.props.dispatch( items( result ) );
-            });
-        }*/
-
-    },
-
     _addOne() {
         Meteor.call('addOne');
         console.log('new')
     },
 
-    _remove(ev) {
-        Meteor.call('remove', ev.target.id);
-        console.log('remove ' + ev.target.id);
+    _remove(idx, ev) {
+        //Meteor.call('remove', ev);
+        console.log('remove ' + ev.target.id, idx);
+        this.props.memoRemoveRequest(ev.target.id, idx).then(
+            () => {
+                console.log('aaaa');
+            }
+        );
+
     },
 
     render() {
+        console.log('this.props', this.props)
 
         return <div>
             Go to: <Link to="/">Home</Link>|<a href="/">Home (full reload)</a>
 
-            {
-                this.props.items.items.map((item) => {
-                    return <h4 key={item._id} id={item._id} onClick={this._remove}>{item.title}</h4>
+            {/*{
+                this.props.list.data.map((item, idx) => {
+                    return <h4 key={item._id} id={item._id} onClick={this._remove.bind(this, idx)}>{item.title}</h4>
                 })
-            }
+            }*/}
 
             <p>
                 <button onClick={this._addOne}>Add One</button>
@@ -73,11 +57,47 @@ let Another = React.createClass({
 
 });
 
-let mapStateToProps = ( state ) => {
-    return {
-        items : state.items
-    }
+Home.PropTypes = {
+    username: React.PropTypes.string
 };
 
-Another = connect( mapStateToProps )( Another );
-export default Another;
+Home.defaultProps = {
+    username: undefined
+};
+
+const mapStateToProps = (state) => {
+    return {
+        items: state.items,
+        isLoggedIn: state.authentication.status.isLoggedIn,
+        postStatus: state.memo.post,
+        currentUser: state.authentication.status.currentUser,
+        memoData: state.memo.list.data,
+        listStatus: state.memo.list.status,
+        isLast: state.memo.list.isLast,
+        editStatus: state.memo.edit,
+        removeStatus: state.memo.remove,
+        starStatus: state.memo.star
+    };
+};
+
+const mapDispatchToProps = (dispatch) => {
+    return {
+        memoPostRequest: (contents) => {
+            return dispatch(memoPostRequest(contents));
+        },
+        memoListRequest: (isInitial, listType, id, username) => {
+            return dispatch(memoListRequest(isInitial, listType, id, username));
+        },
+        memoEditRequest: (id, index, contents) => {
+            return dispatch(memoEditRequest(id, index, contents));
+        },
+        memoRemoveRequest: (id, index) => {
+            return dispatch(memoRemoveRequest(id, index));
+        },
+        memoStarRequest: (id, index) => {
+            return dispatch(memoStarRequest(id, index));
+        }
+    };
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(Another);

@@ -22,9 +22,9 @@ export default Home = React.createClass({
         console.log('new')
     },
 
-    _remove(ev) {
-        Meteor.call('remove', ev.target.id);
-        console.log('remove ' + ev.target.id);
+    _remove(ev, e) {
+        //Meteor.call('remove', ev.target.id);
+        console.log('remove ', ev.target.id, e);
     },
 
     render() {
@@ -32,8 +32,8 @@ export default Home = React.createClass({
             Go to: <Link to="/another">another page</Link>
 
             {
-                this.data.items.map((item) => {
-                    return <h4 key={item._id} id={item._id} onClick={this._remove}>{item.title}</h4>
+                this.data.items.map((item, idx) => {
+                    return <h4 key={item._id} id={item._id} onClick={this._remove.bind(this, idx)}>{item.title}</h4>
                 })
             }
 

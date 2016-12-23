@@ -29,7 +29,11 @@ const htmlHook = (html) => {
 // Create a react-cookie
 const preRender = (req, res) => {
     Meteor.call("items", (error, result) => {
-        initialState = { items : { items : result } };
+        initialState = { list: {
+            status: 'INIT',
+            data: result,
+            isLast: false
+        } };
     });
     return ReactCookie.plugToRequest(req, res);
 };
