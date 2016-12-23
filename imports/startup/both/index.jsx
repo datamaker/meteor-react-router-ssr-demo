@@ -1,18 +1,17 @@
 import React from 'react';
 import {Provider} from 'react-redux';
-import {ReactRouterSSR} from 'meteor/datamaker:react-router-ssr';
-
-import routes from './routes';
-import configureStore from './store';
-
 import ReactHelmet from 'react-helmet';
 import ReactCookie from 'react-cookie';
-import ReactMixin from 'react-mixin';
+import {ReactRouterSSR} from 'meteor/datamaker:react-router-ssr';
+import routes from './routes';
+import configureStore from './store';
+import './methods.jsx';
 
 // Data that is populated by hooks during startup
 let history;
 let store;
 let initialState;
+let items;
 
 const props = {
     onUpdate() {
@@ -29,6 +28,9 @@ const htmlHook = (html) => {
 
 // Create a react-cookie
 const preRender = (req, res) => {
+    Meteor.call("items", (error, result) => {
+        initialState = { items : { items : result } };
+    });
     return ReactCookie.plugToRequest(req, res);
 };
 

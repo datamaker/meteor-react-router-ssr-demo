@@ -57,9 +57,9 @@ export default App = React.createClass({
                     noscript={[
                         {"innerHTML": `<img height="1" width="1" style="display:none" src="https://www.facebook.com/tr?id=1111111&ev=PageView&noscript=1"/>`}
                     ]}
-                    onChangeClientState={(newState) => console.log(newState)}
+                    //onChangeClientState={(newState) => console.log(newState)}
                 />
-                <header>Header { (this.state.isReady) ? "(..sub ready, live data now!)" : null }</header>
+                <header>Pub/Sub { (this.state.isReady) ? "(..sub ready, live data now!)" : null }</header>
 
                 {this.props.children}
 

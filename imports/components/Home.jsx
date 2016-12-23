@@ -13,7 +13,7 @@ export default Home = React.createClass({
         };
     },
 
-    getInitialState: function () {
+    getInitialState() {
         return {};
     },
 

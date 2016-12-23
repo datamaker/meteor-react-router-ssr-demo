@@ -1,14 +1,12 @@
 import React from 'react'
-import {createStore, combineReducers, compose, applyMiddleware} from 'redux';
-import {routerReducer, routerMiddleware} from 'react-router-redux';
+import {createStore, compose, applyMiddleware} from 'redux';
+import {routerMiddleware} from 'react-router-redux';
+import reducers from '../../reducers/index.jsx';
 
 export default function configureStore(initialState, history) {
-    const reducer = combineReducers({
-        routing: routerReducer
-    });
 
-    const store = createStore(
-        reducer,
+    return createStore(
+        reducers,
         initialState,
         compose(
             applyMiddleware(
@@ -16,6 +14,4 @@ export default function configureStore(initialState, history) {
             )
         )
     );
-
-    return store
 }
