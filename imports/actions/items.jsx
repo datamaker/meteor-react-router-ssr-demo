@@ -30,11 +30,12 @@ export function memoPostRequest(contents) {
     return (dispatch) => {
         dispatch(memoPost());
 
-        return Meteor.call('addOne', (error, result) => {
+        return Meteor.call('addOne', contents, (error, result) => {
+            let data = [{_id: result, title: contents}];
             if(!error){
-                dispatch(addOneSuccess());
+                dispatch(memoPostSuccess(data));
             }else{
-                dispatch(addOneFailure(error));
+                dispatch(memoPostFailure(error));
             }
         });
     };
@@ -46,9 +47,10 @@ export function memoPost() {
     };
 }
 
-export function memoPostSuccess() {
+export function memoPostSuccess(data) {
     return {
-        type: MEMO_POST_SUCCESS
+        type: MEMO_POST_SUCCESS,
+        data
     };
 }
 
@@ -145,7 +147,7 @@ export function memoEditSuccess(index, memo) {
 
 export function memoEditFailure(error) {
     return {
-        type: MEMO_EDIT_FAILIURE,
+        type: MEMO_EDIT_FAILURE,
         error
     };
 }

@@ -8,9 +8,9 @@ Meteor.methods({
         return Items.find({}).fetch();
     },
 
-    addOne() {
+    addOne(contents) {
         this.unblock();
-        return Items.insert({title: `test ${Math.round(Math.random() * 100)}`});
+        return Items.insert({title: contents});
     },
 
     remove(id) {

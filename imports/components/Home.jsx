@@ -18,13 +18,13 @@ export default Home = React.createClass({
     },
 
     _addOne() {
-        Meteor.call('addOne');
+        Meteor.call('addOne', `test ${Math.round(Math.random() * 100)}`);
         console.log('new')
     },
 
-    _remove(ev, e) {
-        //Meteor.call('remove', ev.target.id);
-        console.log('remove ', ev.target.id, e);
+    _remove(idx, ev) {
+        Meteor.call('remove', ev.target.id);
+        console.log('remove ', ev.target.id, idx);
     },
 
     render() {

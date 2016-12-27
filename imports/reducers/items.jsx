@@ -2,7 +2,6 @@ import * as types from '../actions/ActionTypes.jsx';
 import update from 'react-addons-update';
 
 const initialState = {
-    items : [],
     post: {
         status: 'INIT',
         error: -1
@@ -27,6 +26,7 @@ const initialState = {
 };
 
 export default function items(state, action) {
+
     if(typeof state === "undefined") {
         state = initialState;
     }
@@ -49,6 +49,10 @@ export default function items(state, action) {
             return update(state, {
                 post: {
                     status: { $set: 'SUCCESS' }
+                },
+                list: {
+                    status: { $set: 'SUCCESS' },
+                    data: { $push: action.data },
                 }
             });
         case types.MEMO_POST_FAILURE:
@@ -118,7 +122,6 @@ export default function items(state, action) {
                     error: { $set: action.error }
                 }
             });
-
 
         default:
             return state;

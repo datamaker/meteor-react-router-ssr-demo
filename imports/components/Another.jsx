@@ -2,7 +2,6 @@ import React from 'react';
 import {Link} from 'react-router';
 import {InjectData} from 'meteor/meteorhacks:inject-data';
 import {
-    items,
     memoPostRequest,
     memoListRequest,
     memoEditRequest,
@@ -10,6 +9,7 @@ import {
     memoStarRequest
 } from '../actions/items.jsx';
 import {connect} from 'react-redux';
+import Write from './Write';
 
 let Another = React.createClass({
 
@@ -21,19 +21,12 @@ let Another = React.createClass({
     },
 
     _addOne() {
-        Meteor.call('addOne');
-        console.log('new')
+        let ran = `test ${Math.round(Math.random() * 100)}`;
+        this.props.memoPostRequest(ran);
     },
 
     _remove(idx, ev) {
-        //Meteor.call('remove', ev);
-        console.log('remove ' + ev.target.id, idx);
-        this.props.memoRemoveRequest(ev.target.id, idx).then(
-            () => {
-                console.log('aaaa');
-            }
-        );
-
+        this.props.memoRemoveRequest(ev.target.id, idx);
     },
 
     render() {
@@ -42,12 +35,13 @@ let Another = React.createClass({
         return <div>
             Go to: <Link to="/">Home</Link>|<a href="/">Home (full reload)</a>
 
-            {/*{
-                this.props.list.data.map((item, idx) => {
+            {
+                this.props.items.list.data.map((item, idx) => {
                     return <h4 key={item._id} id={item._id} onClick={this._remove.bind(this, idx)}>{item.title}</h4>
                 })
-            }*/}
+            }
 
+            {/*<Write onPost={this._addOne}/>*/}
             <p>
                 <button onClick={this._addOne}>Add One</button>
             </p>
@@ -57,11 +51,11 @@ let Another = React.createClass({
 
 });
 
-Home.PropTypes = {
+Another.PropTypes = {
     username: React.PropTypes.string
 };
 
-Home.defaultProps = {
+Another.defaultProps = {
     username: undefined
 };
 

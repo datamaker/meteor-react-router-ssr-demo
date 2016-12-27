@@ -11,7 +11,6 @@ import './methods.jsx';
 let history;
 let store;
 let initialState;
-let items;
 
 const props = {
     onUpdate() {
@@ -28,12 +27,32 @@ const htmlHook = (html) => {
 
 // Create a react-cookie
 const preRender = (req, res) => {
-    Meteor.call("items", (error, result) => {
-        initialState = { list: {
-            status: 'INIT',
-            data: result,
-            isLast: false
-        } };
+    Meteor.call('items', (error, result) => {
+        initialState = {
+            items: {
+                post: {
+                    status: 'INIT',
+                    error: -1
+                },
+                list: {
+                    status: 'INIT',
+                    data: result,
+                    isLast: false
+                },
+                edit: {
+                    status: 'INIT',
+                    error: -1
+                },
+                remove: {
+                    status: 'INIT',
+                    error: -1
+                },
+                star: {
+                    status: 'INIT',
+                    error: -1
+                }
+            }
+        };
     });
     return ReactCookie.plugToRequest(req, res);
 };
