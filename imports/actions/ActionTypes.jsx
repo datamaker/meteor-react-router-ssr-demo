@@ -6,10 +6,6 @@ export const ITEMS_POST_SUCCESS = "ITEMS_POST_SUCCESS";
 export const ITEMS_POST_FAILURE = "ITEMS_POST_FAILURE";
 export const ITEMS_REMOVE = 'ITEMS_REMOVE';
 
-/* RESIZE */
-
-export const RESIZE = 'RESIZE';
-
 /* AUTH */
 
 export const AUTH_LOGIN = "AUTH_LOGIN";
