@@ -4,6 +4,9 @@ Universal Rendering 데모 입니다.
 
 참고는 react-router-ssr에 있는 예제를 참고하였습니다. 
 
+home : pub/sub 구현
+Another : redux 구현
+
 ## Install
 
 ```javascript
